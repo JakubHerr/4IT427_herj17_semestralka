@@ -1,7 +1,8 @@
 import type {Workout} from "@/types/Workout.ts";
 import type {Exercise} from "@/types/Exercise.ts";
-import {createContext, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import type {ExerciseSet} from "@/types/Set.ts";
+import {UserContext} from "@/context/UserContext.tsx";
 
 interface WorkoutContextProps {
     workout: Workout;
@@ -23,9 +24,11 @@ interface WorkoutContextProps {
 export const WorkoutContext = createContext<WorkoutContextProps | null>(null);
 
 export function WorkoutProvider({children}: {children: React.ReactNode}) {
+    const {currentUser} = useContext(UserContext);
+
     const [workout, setWorkout] = useState<Workout>({
         id: crypto.randomUUID(),
-        userId: "Pepa",
+        userId: currentUser?.id ?? "Pepa",
         date: new Date(),
         exercises: [],
         duration: 0,
