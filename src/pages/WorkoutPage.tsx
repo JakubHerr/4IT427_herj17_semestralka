@@ -4,11 +4,11 @@ import {ExerciseCard} from "@/components/ExerciseCard.tsx";
 
 export function WorkoutPage() {
     const [workout, setWorkout] = useState<Workout>({
-        id: "-1",
+        id: crypto.randomUUID(),
         userId: "Pepa",
         date: new Date(),
         exercises: [{
-            id: "1",
+            id: crypto.randomUUID(),
             name: "test",
             description: "test",
         }],
@@ -23,7 +23,7 @@ export function WorkoutPage() {
                     {
                         ...workout,
                         exercises: [...workout.exercises, {
-                            id: "2",
+                            id: crypto.randomUUID(),
                             name: "test2",
                             description: "test2",
                         }]

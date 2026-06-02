@@ -10,7 +10,7 @@ type ExerciseCardProps = {
 
 export function ExerciseCard({exercise, onRemoveExercise}: ExerciseCardProps) {
     const [sets, setSets] = useState<ExerciseSet[]>([
-        {reps: 0, weight: 0},
+        {reps: 0, weight: 0, completed: false},
     ]);
 
     return (
@@ -18,7 +18,7 @@ export function ExerciseCard({exercise, onRemoveExercise}: ExerciseCardProps) {
             <div>ExerciseCard</div>
             <div>{exercise.name}</div>
             <button onClick={() => setSets(
-                [...sets, {reps: 0, weight: 0}]
+                [...sets, {reps: 0, weight: 0, completed: false}]
             )}>Add set
             </button>
 
@@ -27,10 +27,18 @@ export function ExerciseCard({exercise, onRemoveExercise}: ExerciseCardProps) {
             )}>Remove set
             </button>
 
-            <button>Remove exercise</button>
+            <button onClick={onRemoveExercise}>Remove exercise</button>
 
             {sets.map((set) => (
-                <WorkoutSet/>
+                <WorkoutSet
+                    set = {set}
+                    onRemoveSet = {() => setSets(
+                        sets.filter((s) => s !== set)
+                    )}
+                    onToggleCompleted = {() => setSets(
+                        sets.map((s) => s.reps === set.reps && s.weight === set.weight ? {...s, completed: !s.completed} : s)
+                    )}
+                />
             ))}
         </>
     )
