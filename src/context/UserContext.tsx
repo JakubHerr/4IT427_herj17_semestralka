@@ -1,6 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import type {User} from "@/types/User.ts";
+import {findUser} from "@/utils/auth.ts";
 
 interface UserContextProps {
     currentUser: User | null;
@@ -26,7 +27,7 @@ export function UserProvider({children}: {children: React.ReactNode}) {
     }, [initialUsers]);
 
     function login(username: string, password: string): boolean {
-        const user = users.find(u => u.name === username && u.password === password);
+        const user = findUser(users, username, password);
         if (!user) return false;
         setCurrentUser(user);
         return true;
