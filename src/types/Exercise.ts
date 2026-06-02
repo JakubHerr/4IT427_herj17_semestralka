@@ -4,5 +4,6 @@ export interface Exercise {
     id: string;
     name: string;
     description: string;
+    bodyPart: string;
     sets: ExerciseSet[];
 }

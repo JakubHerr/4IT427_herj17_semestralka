@@ -1,21 +1,16 @@
 import {ExerciseCard} from "@/components/ExerciseCard.tsx";
 import {useWorkout} from "@/hooks/useWorkout.ts";
+import {useNavigate} from "react-router-dom";
 
 export function WorkoutPage() {
-    const { workout, addExercise, saveWorkout, resetWorkout } = useWorkout();
+    const { workout, saveWorkout, resetWorkout } = useWorkout();
+    const navigate = useNavigate();
 
     return (
         <>
             <h1>Workout</h1>
             <div>
-                <button onClick={() => addExercise({
-                        id: crypto.randomUUID(),
-                        name: "test2",
-                        description: "test2",
-                        sets: []
-                    }
-                )}>Přidat cvik
-                </button>
+                <button onClick={() => navigate("/workout/select-exercise")}>Přidat cvik</button>
             </div>
 
             <div>

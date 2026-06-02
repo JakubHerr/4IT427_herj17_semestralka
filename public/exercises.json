@@ -1,0 +1,22 @@
+[
+  { "id": "ex-001", "name": "Bench Press", "description": "Lie on a flat bench and press a barbell upward from chest height.", "bodyPart": "Chest", "sets": [] },
+  { "id": "ex-002", "name": "Push-up", "description": "Lower and raise your body using your arms while in a plank position.", "bodyPart": "Chest", "sets": [] },
+  { "id": "ex-003", "name": "Incline Dumbbell Press", "description": "Press dumbbells upward on an inclined bench to target the upper chest.", "bodyPart": "Chest", "sets": [] },
+  { "id": "ex-004", "name": "Cable Fly", "description": "Pull cable handles in an arc motion to isolate the chest muscles.", "bodyPart": "Chest", "sets": [] },
+  { "id": "ex-005", "name": "Pull-up", "description": "Hang from a bar and pull yourself up until your chin clears it.", "bodyPart": "Back", "sets": [] },
+  { "id": "ex-006", "name": "Barbell Row", "description": "Hinge at the hips and row a barbell toward your lower chest.", "bodyPart": "Back", "sets": [] },
+  { "id": "ex-007", "name": "Lat Pulldown", "description": "Pull a cable bar down to your upper chest while seated at a machine.", "bodyPart": "Back", "sets": [] },
+  { "id": "ex-008", "name": "Seated Cable Row", "description": "Pull a cable handle toward your torso while seated with legs extended.", "bodyPart": "Back", "sets": [] },
+  { "id": "ex-009", "name": "Squat", "description": "Lower your body by bending at the knees and hips with a barbell on your back.", "bodyPart": "Legs", "sets": [] },
+  { "id": "ex-010", "name": "Deadlift", "description": "Lift a barbell from the floor to a standing position by extending hips and knees.", "bodyPart": "Legs", "sets": [] },
+  { "id": "ex-011", "name": "Leg Press", "description": "Push a weighted platform away from you while seated on a leg press machine.", "bodyPart": "Legs", "sets": [] },
+  { "id": "ex-012", "name": "Lunges", "description": "Step forward and lower your rear knee toward the ground, then return.", "bodyPart": "Legs", "sets": [] },
+  { "id": "ex-013", "name": "Overhead Press", "description": "Press a barbell overhead from shoulder height to full arm extension.", "bodyPart": "Shoulders", "sets": [] },
+  { "id": "ex-014", "name": "Lateral Raise", "description": "Raise dumbbells out to the sides until arms are parallel with the floor.", "bodyPart": "Shoulders", "sets": [] },
+  { "id": "ex-015", "name": "Face Pull", "description": "Pull a rope attachment toward your face to target the rear deltoids.", "bodyPart": "Shoulders", "sets": [] },
+  { "id": "ex-016", "name": "Bicep Curl", "description": "Curl a barbell or dumbbells upward by flexing the elbow.", "bodyPart": "Arms", "sets": [] },
+  { "id": "ex-017", "name": "Tricep Pushdown", "description": "Push a cable bar downward by extending the elbow to work the triceps.", "bodyPart": "Arms", "sets": [] },
+  { "id": "ex-018", "name": "Hammer Curl", "description": "Curl dumbbells with a neutral (hammer) grip to target the brachialis.", "bodyPart": "Arms", "sets": [] },
+  { "id": "ex-019", "name": "Plank", "description": "Hold a push-up position with a straight body to engage the core.", "bodyPart": "Core", "sets": [] },
+  { "id": "ex-020", "name": "Crunches", "description": "Curl your upper body toward your knees while lying on your back.", "bodyPart": "Core", "sets": [] }
+]
