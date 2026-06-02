@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# WorkoutApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Semestrální práce pro předmět **4IT427** — jednoduchá webová aplikace pro sledování silových tréninků.
 
-Currently, two official plugins are available:
+## Popis projektu
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+WorkoutApp umožňuje uživateli sestavit trénink z předpřipravené knihovny cviků, zaznamenat série s váhou a počtem opakování a trénink uložit. Aplikace podporuje registraci a přihlášení uživatele a přepínání světlého/tmavého režimu.
 
-## React Compiler
+Projekt vznikl jako školní práce. Backend a perzistence dat jsou zatím simulovány statickými JSON soubory v adresáři `public/`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Technologický stack
 
-## Expanding the ESLint configuration
+| Vrstva | Technologie |
+|---|---|
+| UI framework | React 19 + TypeScript |
+| Routing | React Router DOM 7 |
+| Správa dat | TanStack React Query 5 |
+| Stylování | Tailwind CSS 4 + vlastní CSS |
+| Build tool | Vite 8 |
+| Testy | Vitest + Testing Library |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Instalace a spuštění
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Předpoklady: **Node.js 18+** a **npm**.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# 1. Klonování repozitáře
+git clone https://github.com/JakubHerr/4IT427_herj17_semestralka.git
+cd 4IT427_herj17_semestralka
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 2. Instalace závislostí
+npm install
+
+# 3. Spuštění vývojového serveru
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Aplikace poběží na `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Ostatní příkazy
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build    # produkční build
+npm run preview  # náhled produkčního buildu
+npm run lint     # statická analýza kódu
 ```
+
+## Použití
+
+1. Otevřete aplikaci v prohlížeči.
+2. **Registrujte se** nebo se přihlaste (demo účty: `alice` / `bob`, heslo `password123`).
+3. Na **Dashboardu** spusťte nový workout.
+4. Klikněte na **+ Přidat cvik** a vyberte cvik z knihovny.
+5. U každého cviku přidejte série tlačítkem **+ Přidat sérii** a vyplňte váhu a opakování.
+6. Trénink uložte tlačítkem **Uložit workout**.
+
+Tmavý/světlý režim přepnete tlačítkem v pravém horním rohu navigace.
+
+## Struktura projektu
+
+```
+src/
+├── components/       # Znovupoužitelné komponenty (Navbar, ExerciseCard, WorkoutSet, …)
+├── context/          # React kontexty (WorkoutContext, UserContext)
+├── hooks/            # Vlastní hooky (useWorkout, useUser)
+├── pages/            # Stránky aplikace (Dashboard, Workout, Login, …)
+└── types/            # TypeScript typy (Exercise, Workout, User, …)
+
+public/
+├── exercises.json    # Knihovna 20 cviků
+└── users.json        # Demo uživatelé (placeholder)
+```
+
+## Autor
+
+**Jakub Herrmann**
+
+## Licence
+Apache-2.0
+
