@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css'
 import {DashboardPage} from "@/pages/DashboardPage.tsx";
 import {WorkoutPage} from "@/pages/WorkoutPage.tsx";
 import {SelectExercisePage} from "@/pages/SelectExercisePage.tsx";
