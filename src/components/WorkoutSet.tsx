@@ -3,12 +3,12 @@ import {useState} from "react";
 
 type WorkoutSetProps = {
     set: ExerciseSet;
-    onToggleCompleted: (weight: number, number: number, completed: boolean) => void;
+    onToggleCompleted: (weight: number, reps: number, completed: boolean) => void;
 }
 
 export function WorkoutSet({set, onToggleCompleted}: WorkoutSetProps) {
-    const { weight, setWeight } = useState(0)
-    const { reps, setReps } = useState(0)
+    const [weight, setWeight] = useState(set.weight)
+    const [reps, setReps] = useState(set.reps)
 
     return (
         <>
@@ -18,8 +18,8 @@ export function WorkoutSet({set, onToggleCompleted}: WorkoutSetProps) {
             }}
             >
                 <input type="number" required placeholder="0" value={weight}
-                       onChange={(e) => setWeight(e.target.value)}/>
-                <input type="number" required placeholder="0" value={reps} onChange={(e) => setReps(e.target.value)}/>
+                       onChange={(e) => setWeight(Number(e.target.value))}/>
+                <input type="number" required placeholder="0" value={reps} onChange={(e) => setReps(Number(e.target.value))}/>
                 <button type="submit">Save</button>
             </form>
         </>

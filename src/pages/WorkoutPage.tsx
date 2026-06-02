@@ -20,12 +20,12 @@ export function WorkoutPage() {
 
             <div>
                 {workout?.exercises.map((exercise) => (
-                    <>
+                    <div key={exercise.id}>
                         <ExerciseCard
                             exercise={exercise}
                         />
                         <p/>
-                    </>
+                    </div>
                 ))}
             </div>
 
