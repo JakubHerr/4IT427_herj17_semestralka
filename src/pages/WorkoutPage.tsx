@@ -1,53 +1,37 @@
-import {useState} from "react";
-import type {Workout} from "@/types/Workout.ts";
 import {ExerciseCard} from "@/components/ExerciseCard.tsx";
+import {useWorkout} from "@/hooks/useWorkout.ts";
 
 export function WorkoutPage() {
-    const [workout, setWorkout] = useState<Workout>({
-        id: crypto.randomUUID(),
-        userId: "Pepa",
-        date: new Date(),
-        exercises: [{
-            id: crypto.randomUUID(),
-            name: "test",
-            description: "test",
-        }],
-        duration: 0,
-    })
+    const { workout, addExercise, saveWorkout, resetWorkout } = useWorkout();
 
     return (
         <>
             <h1>Workout</h1>
             <div>
-                <button onClick={() => setWorkout(
-                    {
-                        ...workout,
-                        exercises: [...workout.exercises, {
-                            id: crypto.randomUUID(),
-                            name: "test2",
-                            description: "test2",
-                        }]
+                <button onClick={() => addExercise({
+                        id: crypto.randomUUID(),
+                        name: "test2",
+                        description: "test2",
+                        sets: []
                     }
-                )}>Přidat cvik</button>
+                )}>Přidat cvik
+                </button>
             </div>
 
             <div>
                 {workout?.exercises.map((exercise) => (
                     <>
                         <ExerciseCard
-                            exercise = {exercise}
-                            onRemoveExercise = {() => setWorkout(
-                                {
-                                    ...workout,
-                                    exercises: workout.exercises.filter(
-                                        (e) => e.id !== exercise.id
-                                    )
-                                }
-                            )}
+                            exercise={exercise}
                         />
                         <p/>
                     </>
                 ))}
+            </div>
+
+            <div>
+                <button onClick={() => saveWorkout()}>Save workout</button>
+                <button onClick={() => resetWorkout()}>cancel workout</button>
             </div>
         </>
     )

@@ -1,19 +1,26 @@
 import type {ExerciseSet} from "@/types/Set.ts";
+import {useState} from "react";
 
 type WorkoutSetProps = {
     set: ExerciseSet;
-    onRemoveSet: () => void;
-    onToggleCompleted: () => void;
+    onToggleCompleted: (weight: number, number: number, completed: boolean) => void;
 }
 
-export function WorkoutSet({set, onRemoveSet, onToggleCompleted}: WorkoutSetProps) {
+export function WorkoutSet({set, onToggleCompleted}: WorkoutSetProps) {
+    const { weight, setWeight } = useState(0)
+    const { reps, setReps } = useState(0)
+
     return (
         <>
-            <div>WorkoutSet</div>
-            <form>
-                <input type="number" placeholder="0"/>
-                <input type="number" placeholder="0" />
-                <input type="checkbox" onClick={() => onToggleCompleted()}/>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                onToggleCompleted(weight, reps, true)
+            }}
+            >
+                <input type="number" required placeholder="0" value={weight}
+                       onChange={(e) => setWeight(e.target.value)}/>
+                <input type="number" required placeholder="0" value={reps} onChange={(e) => setReps(e.target.value)}/>
+                <button type="submit">Save</button>
             </form>
         </>
     )

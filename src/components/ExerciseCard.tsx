@@ -1,44 +1,30 @@
 import type {Exercise} from "@/types/Exercise.ts";
-import {useState} from "react";
-import type {ExerciseSet} from "@/types/Set.ts";
 import {WorkoutSet} from "@/components/WorkoutSet.tsx";
+import {useWorkout} from "@/hooks/useWorkout.ts";
 
 type ExerciseCardProps = {
     exercise: Exercise;
-    onRemoveExercise: () => void;
 }
 
-export function ExerciseCard({exercise, onRemoveExercise}: ExerciseCardProps) {
-    const [sets, setSets] = useState<ExerciseSet[]>([
-        {reps: 0, weight: 0, completed: false},
-    ]);
+export function ExerciseCard({exercise}: ExerciseCardProps) {
+    const { removeExercise, addSet, removeSet, modifySet} = useWorkout();
 
     return (
         <>
             <div>ExerciseCard</div>
             <div>{exercise.name}</div>
-            <button onClick={() => setSets(
-                [...sets, {reps: 0, weight: 0, completed: false}]
-            )}>Add set
+            <button onClick={() => addSet(exercise.id)}>Add set
             </button>
 
-            <button onClick={() => setSets(
-                sets.slice(0, sets.length - 1)
-            )}>Remove set
+            <button onClick={() => removeSet(exercise.id, exercise.sets[exercise.sets.length-1].id)}>Remove set
             </button>
 
-            <button onClick={onRemoveExercise}>Remove exercise</button>
+            <button onClick={() => removeExercise(exercise.id)}>Remove exercise</button>
 
-            {sets.map((set) => (
+            {exercise.sets.map((set) => (
                 <WorkoutSet
-                    set = {set}
-                    onRemoveSet = {() => setSets(
-                        sets.filter((s) => s !== set)
-                    )}
-                    onToggleCompleted = {() => setSets(
-                        sets.map((s) => s.reps === set.reps && s.weight === set.weight ? {...s, completed: !s.completed} : s)
-                    )}
-                />
+                    set={set}
+                    onToggleCompleted={() => modifySet(exercise.id, set.id, {completed: !set.completed})} />
             ))}
         </>
     )
