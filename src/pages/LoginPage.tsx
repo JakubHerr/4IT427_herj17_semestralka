@@ -24,21 +24,38 @@ export function LoginPage() {
     }
 
     return (
-        <>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username</label>
-                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                </div>
-                {error && <p>{error}</p>}
-                <button type="submit">Login</button>
-            </form>
-            <p>No account? <a onClick={() => navigate("/register")} style={{cursor: "pointer"}}>Register</a></p>
-        </>
+        <div className="auth-wrapper">
+            <div className="auth-card">
+                <h1>Přihlášení</h1>
+                <form onSubmit={handleSubmit} className="form-stack">
+                    <div className="form-group">
+                        <label>Uživatelské jméno</label>
+                        <input
+                            className="input"
+                            type="text"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Heslo</label>
+                        <input
+                            className="input"
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                    </div>
+                    {error && <p className="error-msg">{error}</p>}
+                    <button className="btn btn-primary btn-lg" type="submit">
+                        Přihlásit se
+                    </button>
+                </form>
+                <p className="auth-footer">
+                    Nemáte účet?{" "}
+                    <a onClick={() => navigate("/register")}>Registrovat se</a>
+                </p>
+            </div>
+        </div>
     );
 }

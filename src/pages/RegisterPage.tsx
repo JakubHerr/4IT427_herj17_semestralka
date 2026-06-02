@@ -24,21 +24,38 @@ export function RegisterPage() {
     }
 
     return (
-        <>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username</label>
-                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                </div>
-                {error && <p>{error}</p>}
-                <button type="submit">Register</button>
-            </form>
-            <p>Already have an account? <a onClick={() => navigate("/login")} style={{cursor: "pointer"}}>Login</a></p>
-        </>
+        <div className="auth-wrapper">
+            <div className="auth-card">
+                <h1>Registrace</h1>
+                <form onSubmit={handleSubmit} className="form-stack">
+                    <div className="form-group">
+                        <label>Uživatelské jméno</label>
+                        <input
+                            className="input"
+                            type="text"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Heslo</label>
+                        <input
+                            className="input"
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                    </div>
+                    {error && <p className="error-msg">{error}</p>}
+                    <button className="btn btn-primary btn-lg" type="submit">
+                        Vytvořit účet
+                    </button>
+                </form>
+                <p className="auth-footer">
+                    Již máte účet?{" "}
+                    <a onClick={() => navigate("/login")}>Přihlásit se</a>
+                </p>
+            </div>
+        </div>
     );
 }

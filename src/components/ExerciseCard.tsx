@@ -7,29 +7,47 @@ type ExerciseCardProps = {
 }
 
 export function ExerciseCard({exercise}: ExerciseCardProps) {
-    const { removeExercise, addSet, removeSet, modifySet} = useWorkout();
+    const {removeExercise, addSet, removeSet, modifySet} = useWorkout();
 
     return (
-        <>
-            <div>ExerciseCard</div>
-            <div>{exercise.name}</div>
-            <button onClick={() => addSet(exercise.id)}>Add set
-            </button>
+        <div className="exercise-card">
+            <div className="exercise-card-header">
+                <div>
+                    <div className="exercise-card-title">{exercise.name}</div>
+                    <div className="exercise-card-body-part">{exercise.bodyPart}</div>
+                </div>
+                <div className="exercise-card-actions">
+                    <button className="btn btn-ghost btn-sm" onClick={() => removeExercise(exercise.id)}>
+                        Odebrat
+                    </button>
+                </div>
+            </div>
 
-            <button
-                onClick={() => exercise.sets.length > 0 && removeSet(exercise.id, exercise.sets[exercise.sets.length-1].id)}
-                disabled={exercise.sets.length === 0}
-            >Remove set
-            </button>
+            <div className="exercise-sets">
+                {exercise.sets.map((set, index) => (
+                    <WorkoutSet
+                        key={set.id}
+                        set={set}
+                        index={index + 1}
+                        onToggleCompleted={(weight, reps, completed) =>
+                            modifySet(exercise.id, set.id, {weight, reps, completed})
+                        }
+                    />
+                ))}
+            </div>
 
-            <button onClick={() => removeExercise(exercise.id)}>Remove exercise</button>
-
-            {exercise.sets.map((set) => (
-                <WorkoutSet
-                    key={set.id}
-                    set={set}
-                    onToggleCompleted={(weight, reps, completed) => modifySet(exercise.id, set.id, {weight, reps, completed})} />
-            ))}
-        </>
-    )
+            <div className="exercise-sets-footer">
+                <button className="btn btn-secondary btn-sm" onClick={() => addSet(exercise.id)}>
+                    + Přidat sérii
+                </button>
+                <button
+                    className="btn btn-ghost btn-sm"
+                    onClick={() => exercise.sets.length > 0 && removeSet(exercise.id, exercise.sets[exercise.sets.length - 1].id)}
+                    disabled={exercise.sets.length === 0}
+                >
+                    − Odebrat sérii
+                </button>
+            </div>
+        </div>
+    );
 }

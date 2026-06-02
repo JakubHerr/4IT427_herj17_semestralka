@@ -18,18 +18,30 @@ export function SelectExercisePage() {
         navigate("/workout");
     }
 
-    if (isLoading) return <p>Loading exercises...</p>;
-    if (isError) return <p>Error: {(error as Error).message}</p>;
+    if (isLoading) return <div className="page"><p style={{color: "var(--color-text-muted)"}}>Načítání cviků...</p></div>;
+    if (isError) return <div className="page"><p className="error-msg">Chyba: {(error as Error).message}</p></div>;
 
     return (
-        <>
-            <h1>Select Exercise</h1>
-            {exercises!.map(ex => (
-                <div key={ex.id}>
-                    <button onClick={() => handleSelect(ex)}>{ex.name}</button>
-                    <span> — {ex.description}</span>
-                </div>
-            ))}
-        </>
+        <div className="page">
+            <div className="page-header">
+                <h1>Vybrat cvik</h1>
+                <button className="btn btn-ghost" onClick={() => navigate("/workout")}>
+                    ← Zpět
+                </button>
+            </div>
+
+            <div className="exercise-list">
+                {exercises!.map(ex => (
+                    <button
+                        key={ex.id}
+                        className="exercise-list-item"
+                        onClick={() => handleSelect(ex)}
+                    >
+                        <span className="exercise-list-item-name">{ex.name}</span>
+                        <span className="exercise-list-item-desc">{ex.description}</span>
+                    </button>
+                ))}
+            </div>
+        </div>
     );
 }
